@@ -8,11 +8,18 @@ namespace ConsoleApplication1
 {
     class Program
     {
+        struct carro
+            {
+              public string modelo;
+              public double km;
+              public double mot;
+            }
+
         static void Main(string[] args)
         {
             int N;
-            string modelo, sub;
-            double km,mot;
+            string sub;
+            carro C1;
             
             Console.WriteLine("Informe a quantidade de carros no galpão");
             N = Convert.ToInt32(Console.ReadLine());
@@ -20,36 +27,36 @@ namespace ConsoleApplication1
             for (int i = 0; i < N; i++)
             {
                 Console.WriteLine("Informe o modelo");
-                modelo = Console.ReadLine();
+                C1.modelo = Console.ReadLine();
 
                 Console.WriteLine("Informe sua quilometragem");
-                km = Double.Parse(Console.ReadLine());
+                C1.km = Double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Informe a potência do motor");
-                mot = Double.Parse(Console.ReadLine());
+                C1.mot = Double.Parse(Console.ReadLine());
 
 
-                sub = Classificar (modelo, km, mot );
+                sub = Classificar (C1);
 
-                Console.WriteLine("{0} - {1}", modelo,sub);
+                Console.WriteLine("{0} - {1}",C1.modelo, sub);
             
             }
 
         }
 
         
-        static string Classificar(string mod, double km, double mot)
+        static string Classificar(carro C1)
         {
 
             string tipo, tipod;
 
 
-            if (km <= 5000)
+            if (C1.km <= 5000)
             {
                tipo = "novo";
             }
 
-            else if (km > 5000 && km <= 30000)
+            else if (C1.km > 5000 && C1.km <= 30000)
             {
                tipo = "seminovo";
             }
@@ -59,12 +66,12 @@ namespace ConsoleApplication1
                tipo = "velho";
             }              
                 
-            if (mot > 200)
+            if (C1.mot > 200)
             {
                tipod = "potente";
             }
 
-            else if (mot >= 120 && mot <= 200)
+            else if (C1.mot >= 120 && C1.mot <= 200)
             {
                tipod = "forte";
             }
@@ -74,7 +81,7 @@ namespace ConsoleApplication1
                tipod = "popular";
             }               
 
-            return tipo + " " + tipod;
+            return tipo + " - " + tipod;
 
             
 
