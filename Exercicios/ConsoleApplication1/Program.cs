@@ -18,28 +18,33 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int N;
-            string sub;
-            carro C1;
             
             Console.WriteLine("Informe a quantidade de carros no galpão");
             N = Convert.ToInt32(Console.ReadLine());
+
+            carro[] C1 = new carro[N] ;
+            string[] resul = new string[N];
                         
             for (int i = 0; i < N; i++)
             {
+
                 Console.WriteLine("Informe o modelo");
-                C1.modelo = Console.ReadLine();
+                C1[i].modelo = Console.ReadLine();
 
                 Console.WriteLine("Informe sua quilometragem");
-                C1.km = Double.Parse(Console.ReadLine());
+                C1[i].km = Double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Informe a potência do motor");
-                C1.mot = Double.Parse(Console.ReadLine());
+                C1[i].mot = Double.Parse(Console.ReadLine());
 
 
-                sub = Classificar (C1);
+                resul[i] = Classificar (C1[i]);
 
-                Console.WriteLine("{0} - {1}",C1.modelo, sub);
-            
+            }
+
+            for (int i = 0; i<N; i++)
+            {
+                Console.WriteLine("{0} - {1}",C1[i].modelo, resul[i]);
             }
 
         }
@@ -50,6 +55,7 @@ namespace ConsoleApplication1
 
             string tipo, tipod;
 
+           
 
             if (C1.km <= 5000)
             {
@@ -83,7 +89,6 @@ namespace ConsoleApplication1
 
             return tipo + " - " + tipod;
 
-            
 
         }
 
