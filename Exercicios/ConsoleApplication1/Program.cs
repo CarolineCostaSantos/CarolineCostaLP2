@@ -13,6 +13,7 @@ namespace ConsoleApplication1
               public string modelo;
               public double km;
               public double mot;
+              public int AnoDeFabricaçao;
             }
 
         static void Main(string[] args)
@@ -41,6 +42,17 @@ namespace ConsoleApplication1
                 resul[i] = Classificar (C1[i]);
 
             }
+
+            Console.WriteLine("deseja atualizar a quilometragem?");
+            string desejo.ToU
+       
+                    
+                    
+                    = Console.ReadLine();
+
+            if (desejo == "sim")
+
+
 
             for (int i = 0; i<N; i++)
             {
@@ -92,9 +104,16 @@ namespace ConsoleApplication1
 
         }
 
+        static void Atualizar (carro C1, double novo)
 
+       {
+           C1.km = novo;
+       }
 
-
+       static double TaxaDeUsoCarro(carro C1)
+       {
+           return C1.km / (DateTime.Now.Year - C1.AnoDeFabricaçao);
+       }
 
 
 
