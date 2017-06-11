@@ -60,6 +60,9 @@ namespace ObjetosNoPlano
                 Console.WriteLine(obj.Cordenadas());
              }
 
+
+                Console.WriteLine("Digite a direção: ");
+                direção = Console.ReadKey().Key;
             }
         }
         
