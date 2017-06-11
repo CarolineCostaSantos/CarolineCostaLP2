@@ -12,9 +12,8 @@ namespace CompetiçãoDeCorrida
         public double Tempo1;
         public double Tempo2;
         public double Tempo3;
-        public double TempOfi = 0;
 
-         public void Descarte()
+         public void CalcularTempo()
 
           {
 
@@ -33,8 +32,6 @@ namespace CompetiçãoDeCorrida
                   TempOfi = Tempo1 + Tempo2;
 
           }
-
-        public 
 
 
    }
