@@ -19,6 +19,23 @@ namespace ObjetosNoPlano
 
      }
 
+
+    public void AndarParaE()
+    {
+        x = x - 3;
+    }
+
+
+    public void AndarParaC()
+    {
+        y = y - 3;
+    }
+
+    public void AndarParaB()
+    {
+        y = y + 3;
+    }
+
     public string Coorenadas()
 
     {

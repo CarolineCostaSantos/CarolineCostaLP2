@@ -28,6 +28,7 @@ namespace ObjetosNoPlano
 
             Console.WriteLine("Digite a direção: ");
             ConsoleKey direção = Console.ReadKey().Key;
+          
 
             if (direção  == ConsoleKey.RightArrow)
             {
@@ -35,6 +36,29 @@ namespace ObjetosNoPlano
 
                 Console.WriteLine(obj.Cordenadas());
             }
+
+            else if (direção == ConsoleKey.LeftArrow)
+            {
+                obj.AndarParaE();
+
+                Console.WriteLine(obj.Cordenadas());
+            }
+
+            else if (direção == ConsoleKey.UpArrow)
+            {
+                obj.AndarParaC();
+
+                Console.WriteLine(obj.Cordenadas());
+            }
+
+            else if (direção == ConsoleKey.DownArrow)
+            {
+                obj.AndarParaB();
+
+                Console.WriteLine(obj.Cordenadas());
+            }
+        }
+        }
         }
     }
 }
