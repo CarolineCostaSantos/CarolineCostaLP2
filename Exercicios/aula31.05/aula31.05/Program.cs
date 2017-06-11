@@ -22,8 +22,8 @@ namespace ObjetosNoPlano
             Objeto2D obj = new Objeto2D;
  
            
-                obj.x = int.Parse(Console.ReadLine());
-                obj.x = int.Parse(Console.ReadLine());
+                obj.x = x;
+                obj.y = y;
 
 
             Console.WriteLine("Digite a direção: ");
@@ -31,7 +31,8 @@ namespace ObjetosNoPlano
 
             if (direção  == ConsoleKey.RightArrow)
             {
-                obj.AndarParaD;
+                obj.AndarParaD();
+
                 Console.WriteLine(obj.Cordenadas());
             }
         }

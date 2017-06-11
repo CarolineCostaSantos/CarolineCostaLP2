@@ -10,17 +10,18 @@ namespace ObjetosNoPlano
     {
        public  int x;
        public  int y;
-       public  int AndarParaD;
     }
 
-     public ----- Cordenadas()
+     public void AndarParaD()
 
      {
-        AndarParaD == 3;
-
-
+        x = x + 3;
 
      }
 
+    public string Coorenadas()
 
+    {
+        return string.Format("({0}, {1})", x, y);
+    }
 } 
