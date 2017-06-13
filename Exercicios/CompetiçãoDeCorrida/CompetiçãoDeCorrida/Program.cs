@@ -16,53 +16,54 @@ namespace CompetiçãoDeCorrida
             int N = int.Parse (Console.ReadLine());
 
 
-            Competidor obj = new Competidor();
-
-            for (int i = 0; i <= N; i++)
-            {
-                Competidor[] Alunos = new Competidor[i];
-
-                Console.WriteLine("Informe o nome do competidor {0} ", i);
-                obj.Nome = Console.ReadLine();
-            }
-
-            for (int i = 0; i <= N; i++)
-            {
-                Console.WriteLine("Informe o tempo 1 do competidor {0}", i);
-                obj.Tempo1 = double.Parse(Console.ReadLine());
-            }
-
-            for (int i = 0; i <= N; i++)
-            {
-                Console.WriteLine("Informe o tempo 2 do competidor {0}", i);
-                obj.Tempo2 = double.Parse(Console.ReadLine());
-            }
-
-            for (int i = 0; i <= N; i++)
-            {
-                Console.WriteLine("Informe o tempo 3 do competidor {0}", i);
-                obj.Tempo3 = double.Parse(Console.ReadLine());
-            }
             
+            Competidor[] competidores = new Competidor[N];
 
-            for (int i = 0; i <= N; i++ )
+            for (int i = 0; i < N; i++)
             {
-                double[] Tempos = new double[i];
 
-                Tempos[i] = obj.CalcularTempo;
+                Console.WriteLine("Informe o nome do competidor {0} ", (i + 1));
+                competidores[i] = new Competidor();
+
+                competidores[i].Nome = Console.ReadLine();
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                Console.WriteLine("Informe o tempo 1 do competidor {0}",(i + 1));
+                competidores[i].Tempo1 = double.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                Console.WriteLine("Informe o tempo 2 do competidor {0}",(i + 1));
+                competidores[i].Tempo2 = double.Parse(Console.ReadLine());
+            }
+
+            for (int i = 0; i < N; i++)
+            {
+                Console.WriteLine("Informe o tempo 3 do competidor {0}", (i + 1));
+                competidores[i].Tempo3 = double.Parse(Console.ReadLine());
+            }
+
+            double[] Tempos = new double[N];
+
+            for (int i = 0; i < N; i++ )
+            {
+
+                Tempos[i] = competidores[i].CalcularTempo();
 
                 if ( Tempos[i] < MenorT)
                 {
                     MenorT = Tempos[i];
 
-                    Venc = Alunos[i].Nome;
+                    Venc = competidores[i].Nome;
                 }
 
-                Console.WriteLine(Venc);
             }
 
+            Console.WriteLine(Venc);
 
-            
         }
     }
 }

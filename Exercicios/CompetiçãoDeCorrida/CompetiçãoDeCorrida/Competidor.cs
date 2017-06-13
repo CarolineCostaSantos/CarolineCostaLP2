@@ -12,12 +12,14 @@ namespace CompetiçãoDeCorrida
         public double Tempo1;
         public double Tempo2;
         public double Tempo3;
+       
 
-         public void CalcularTempo()
+         public double CalcularTempo()
 
           {
+                 double TempOfi = 0;
 
-              if (Tempo1 > Tempo2 && Tempo1 > Tempo3)
+            if (Tempo1 > Tempo2 && Tempo1 > Tempo3)
               {
                   TempOfi = Tempo2 + Tempo3;
               }
@@ -31,6 +33,7 @@ namespace CompetiçãoDeCorrida
 
                   TempOfi = Tempo1 + Tempo2;
 
+            return TempOfi;
           }
 
 
