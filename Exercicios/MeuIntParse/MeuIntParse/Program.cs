@@ -10,13 +10,23 @@ namespace MeuIntParse
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Char.GetNumericValue('1'));
-            //Console.WriteLine(2 * MeuIntParse(Console.ReadLine()));
+            Console.WriteLine("Digite o número: ");
+            string numStr = Console.ReadLine();
+
+            Console.WriteLine(MeuIntParse(numStr));
         }
 
         public static int MeuIntParse(string nroComoStr)
         {
-            return 0;    
+            int multi = 1;
+            int numero = 0;
+
+            for(int i=nroComoStr.Length-1; i >= 0; i--)
+            {
+                numero += (nroComoStr[i] - '0') * multi;
+                multi *= 10;
+            }
+            return numero;    
         }
     }
 }
