@@ -15,8 +15,14 @@ namespace MesPorExtenso
 
             string data = Console.ReadLine();    // "25/04/1954"
 
-            string pedacoDoMes = data.Substring(4, 2);  // "04"
+            string pedacoDoMes = data.Substring(3, 2);  // "04"
             mes = int.Parse(pedacoDoMes); // 4
+
+            string pedacoDoDia = data.Substring(0, 2);
+            dia = int.Parse(pedacoDoDia);
+
+            string pedacoDoAno = data.Substring(6, 4);
+            ano = int.Parse(pedacoDoAno);
 
             switch (mes)
             {
@@ -27,41 +33,15 @@ namespace MesPorExtenso
                 case 05: v = "maio"; break;
                 case 06: v = "junho"; break;
                 case 07: v = "julho"; break;
-
-                case 08:
-
-                    v = "agosto";
-
-                    break;
-
-                case 09:
-
-                    v = "setembro";
-
-                    break;
-
-                case 10:
-
-                    v = "outubro";
-
-                    break;
-
-                case 11:
-
-                    v = "novembro";
-
-                    break;
-
-                case 12:
-
-                    v = "dezembro";
-
-                    break;
-                default:
-                    v = ""; break;
+                case 08: v = "agosto"; break;
+                case 09: v = "setembro"; break;
+                case 10: v = "outubro"; break;
+                case 11: v = "novembro"; break;
+                case 12: v = "dezembro"; break;
+                default: v = ""; break;
 
             }
-            Console.WriteLine("{0} de {1} de {2}", data);
+            Console.WriteLine("{0} de {1} de {2}", dia, v, ano);
         }
     }
 }
