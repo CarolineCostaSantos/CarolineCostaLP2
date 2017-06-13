@@ -19,50 +19,43 @@ namespace ObjetosNoPlano
             int y = int.Parse(Console.ReadLine());
 
           
-            Objeto2D obj = new Objeto2D;
+            Objeto2D obj = new Objeto2D();
  
            
-                obj.x = x;
-                obj.y = y;
+            obj.x = x;
+            obj.y = y;
 
 
             Console.WriteLine("Digite a direção: ");
             ConsoleKey direção = Console.ReadKey().Key;
           
-            if (direção != ConsoleKey.Escape)
+            while (direção != ConsoleKey.Escape)
             { 
 
-             if (direção  == ConsoleKey.RightArrow)
-             {
-                obj.AndarParaD();
+                if (direção  == ConsoleKey.RightArrow && obj.x + 3 <= L)
+                {
+                    obj.AndarParaD();
+                }
 
-                Console.WriteLine(obj.Cordenadas());
-             }
+                else if (direção == ConsoleKey.LeftArrow && obj.x >= 3)
+                {
+                    obj.AndarParaE();
+                }
 
-             else if (direção == ConsoleKey.LeftArrow)
-             {
-                obj.AndarParaE();
+                else if (direção == ConsoleKey.UpArrow && obj.y >= 3)
+                {
+                    obj.AndarParaC();
+                }
 
-                Console.WriteLine(obj.Cordenadas());
-             }
-
-             else if (direção == ConsoleKey.UpArrow)
-             {
-                obj.AndarParaC();
-
-                Console.WriteLine(obj.Cordenadas());
-             }
-
-             else if (direção == ConsoleKey.DownArrow)
-             {
-                obj.AndarParaB();
-
-                Console.WriteLine(obj.Cordenadas());
-             }
+                else if (direção == ConsoleKey.DownArrow && obj.y + 3 <= A)
+                {
+                    obj.AndarParaB();
+                }
 
 
                 Console.WriteLine("Digite a direção: ");
                 direção = Console.ReadKey().Key;
+                Console.WriteLine(obj.Cordenadas());
             }
         }
         

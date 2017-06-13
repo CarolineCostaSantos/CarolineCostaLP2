@@ -6,39 +6,39 @@ using System.Threading.Tasks;
 
 namespace ObjetosNoPlano
 {
-        class Objeto2D
+    class Objeto2D
     {
-       public  int x;
-       public  int y;
+        public int x;
+        public int y;
+
+
+        public void AndarParaD()
+
+        {
+            x = x + 3;
+
+        }
+
+
+        public void AndarParaE()
+        {
+            x = x - 3;
+        }
+
+
+        public void AndarParaC()
+        {
+            y = y - 3;
+        }
+
+        public void AndarParaB()
+        {
+            y = y + 3;
+        }
+
+        public string Cordenadas()
+        {
+            return string.Format("({0}, {1})", x, y);
+        }
     }
-
-     public void AndarParaD()
-
-     {
-        x = x + 3;
-
-     }
-
-
-    public void AndarParaE()
-    {
-        x = x - 3;
-    }
-
-
-    public void AndarParaC()
-    {
-        y = y - 3;
-    }
-
-    public void AndarParaB()
-    {
-        y = y + 3;
-    }
-
-    public string Coorenadas()
-
-    {
-        return string.Format("({0}, {1})", x, y);
-    }
-} 
+}
