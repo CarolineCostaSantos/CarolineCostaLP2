@@ -28,9 +28,15 @@ namespace LivrosHermione
             Console.WriteLine(" Quantas páginas leio por hora? ");
             PH = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Irei ler este livro em {0} dias", livros.Dias(horas, PH));
 
+            if (livros.qDias <= livros.Devol)
 
-            Quais livros são impossiveis?
+                Console.WriteLine(" Conseguirei ler o livro {0} antes da data de devolução", livros.Titulo);
+
+            else
+
+                Console.WriteLine(" É impossível ler o livro {0} antes da data de devolução", livros.Titulo);
 
         }
     }

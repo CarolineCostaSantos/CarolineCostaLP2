@@ -11,14 +11,16 @@ namespace LivrosHermione
         public string Titulo;
         public int NdPg;
         public int Devol;
-
+        public int qDias;
 
         public int Dias(int horas, int PH)
         {
-             quantos dias Para ler tudo
-            return 9;
-        }
+            int qtd = PH * horas;
 
+            qDias = NdPg / qtd;
+
+            return qDias;
+        }
         
     }
 }
