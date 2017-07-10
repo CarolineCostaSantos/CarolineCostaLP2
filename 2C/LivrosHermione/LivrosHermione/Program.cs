@@ -10,34 +10,47 @@ namespace LivrosHermione
     {
         static void Main(string[] args)
         {
-            int horas, PH;
-            Livro livros = new Livro();
+            int horas, PH, N;
 
-            Console.WriteLine("Informe o título do livro");
-            livros.Titulo = Console.ReadLine();
+            Console.WriteLine(" Quantos livros deseja verificar? ");
+            N = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe a quantidade de páginas");
-            livros.NdPg = int.Parse (Console.ReadLine());
+            Livro[] livros = new Livro[N]; int[] dias = new int[N];
 
-            Console.WriteLine("Em quantos dias deve haver a devolução? ");
-            livros.Devol = int.Parse(Console.ReadLine());
+            for (int i = 0; i < N; i++)
+            {
 
-            Console.WriteLine(" Quantos horas tenho disponível? ");
-            horas = int.Parse(Console.ReadLine());
+                livros[i] = new Livro();
 
-            Console.WriteLine(" Quantas páginas leio por hora? ");
-            PH = int.Parse(Console.ReadLine());
+                Console.WriteLine("Informe o título do livro");
+                livros[i].Titulo = Console.ReadLine();
 
-            Console.WriteLine("Irei ler este livro em {0} dias", livros.Dias(horas, PH));
+                Console.WriteLine("Informe a quantidade de páginas");
+                livros[i].NdPg = int.Parse(Console.ReadLine());
 
-            if (livros.qDias <= livros.Devol)
+                Console.WriteLine("Em quantos dias deve haver a devolução? ");
+                livros[i].Devol = int.Parse(Console.ReadLine());
 
-                Console.WriteLine(" Conseguirei ler o livro {0} antes da data de devolução", livros.Titulo);
+                Console.WriteLine(" Quantos horas tenho disponível? ");
+                horas = int.Parse(Console.ReadLine());
 
-            else
+                Console.WriteLine(" Quantas páginas leio por hora? ");
+                PH = int.Parse(Console.ReadLine());
 
-                Console.WriteLine(" É impossível ler o livro {0} antes da data de devolução", livros.Titulo);
+                dias[i] = livros[i].Dias(horas, PH);
+            }
 
+            for (int i = 0; i < N; i++)
+            {
+
+                if (dias[i] <= livros[i].Devol)
+
+                    Console.WriteLine(" Irei ler o livro: {0} em {1} dias, antes da data de devolução", livros[i].Titulo, dias[i]);
+
+                else
+
+                    Console.WriteLine(" É impossível ler o livro {0} antes da data de devolução pois levrei {1} dias", livros[i].Titulo, dias[i]);
+            }
         }
     }
 }
