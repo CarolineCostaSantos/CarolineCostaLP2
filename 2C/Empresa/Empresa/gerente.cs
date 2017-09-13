@@ -11,7 +11,7 @@ namespace Empresa
         public string Setor { get; set; }
         public double Bonus { get; set; } //porcentagem do salario
 
-        public Gerente(string setor)
+        public Gerente(string nome, string setor): base(nome)
         {
             Setor = setor;
         }

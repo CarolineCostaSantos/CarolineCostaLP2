@@ -17,9 +17,9 @@ namespace Empresa
            get { return dEntrada; }
        }
 
-        public Empregado( int Data)
+        public Empregado(string nome, int Data): base(nome)
        {
-           Data = dEntrada;
+           dEntrada = Data;
        }
 
     }

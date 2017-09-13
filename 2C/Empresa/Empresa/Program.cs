@@ -10,7 +10,6 @@ namespace Empresa
     {
         static void Main(string[] args)
         {
-           
 
          
         }

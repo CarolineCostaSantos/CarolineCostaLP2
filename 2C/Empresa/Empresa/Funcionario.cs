@@ -23,8 +23,11 @@ namespace Empresa
             get { return cpf;}
         }
 
-        public Funcionario
+        public Funcionario(string nome)
+        {
+            Nome = nome;
+        }
     }
 }
-    
+
 
