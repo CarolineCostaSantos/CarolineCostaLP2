@@ -79,5 +79,31 @@ namespace ConversorMedidas
         {
             return x * 0.0003048;
         }
+
+        public static double CmparaPoleg()
+        {
+            return x * 0.393701;
+        }
+
+        public static double PolegparaCm()
+        {
+            return x * 2.54;
+        }
+        public static double CmparaPes()
+        {
+            return x * 0.0328084;
+        }
+        public static double PesparaCm ()
+        {
+            return x * 0.3048;
+        }
+        public static double PesparaPoleg()
+        {
+            return x * 12.000;
+        }
+        public static double PolegparaPes()
+        {
+            return x * 0.083333;
+        }
     }
 }
