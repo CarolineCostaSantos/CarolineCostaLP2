@@ -10,8 +10,9 @@ namespace Produtos
     {
         private int id;
         private string nome;
-        private double preco;
-        public int Quantidade = 0;
+        public string marca;
+        public double preco;
+        private int estoque;
 
 
         public int Id {
@@ -26,9 +27,9 @@ namespace Produtos
         }
 
         
-        public double Preco {
+        public int Estoque {
 
-            get { return preco; }
+            get { return estoque; }
         }
 
 
@@ -38,28 +39,34 @@ namespace Produtos
             this.id = id;
             this.nome = nome;
             this.preco = preco;
+            estoque = 0;
         }
 
 
         public void Retirada( int qtd)
         {
-            if ( qtd <= Quantidade)
+            if ( qtd <= estoque)
             {
-                Quantidade -= qtd;
+                estoque -= qtd;
+            }
+
+            else
+            {
+                throw new Exception();
             }
         }
 
         public void Reposicao(int qtd)
         {
-            if ( qtd > Quantidade)
+            if ( qtd > estoque)
             {
-                Quantidade += qtd;
+                estoque += qtd;
             }
         }
 
         public string Imprimir()
         {
-            return string.Format("{0} - {1} - {2} - {3}", id, nome, preco, Quantidade);
+            return string.Format(" Produto {0} - {1} - R$ {2} - Estoque: {3}", id, nome, preco, estoque);
         }
     }
 }
