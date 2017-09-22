@@ -17,57 +17,57 @@ namespace ConversorMedidas
             if (r == 1)
             {
                 Console.WriteLine("Digite a distância");
-                ConversorDistancia.x = double.Parse(Console.ReadLine());
+                double x = double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Qual conversão deseja fazer?: 1- M para Km | 2- Km para M");
                 int c = int.Parse(Console.ReadLine());
 
                 if (c == 1)
                 {
-                    Console.WriteLine(ConversorDistancia.MparaKm());
+                    Console.WriteLine(ConversorDistancia.MparaKm(x));
                 }
 
                 else if (c == 2)
                 {
-                    Console.WriteLine(ConversorDistancia.KmparaM());
+                    Console.WriteLine(ConversorDistancia.KmparaM(x));
                 }
             }
 
             else if (r == 2)
             {
                 Console.WriteLine("Digite a temperatura");
-                ConversorTemperatura.x = double.Parse(Console.ReadLine());
+                double x = double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Qual conversão deseja fazer?: 1- C para K | 2- K para C");
                 int c = int.Parse(Console.ReadLine());
 
                 if (c == 1)
                 {
-                    Console.WriteLine(ConversorTemperatura.CparaK());
+                    Console.WriteLine(ConversorTemperatura.CparaK(x));
                 }
 
                 else if (c == 2)
                 {
-                    Console.WriteLine(ConversorTemperatura.KparaC());
+                    Console.WriteLine(ConversorTemperatura.KparaC(x));
                 }
             }
 
             else if (r == 3)
             {
                 Console.WriteLine("Digite a massa");
-                ConversorMassa.x = double.Parse(Console.ReadLine());
+                double x = double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Qual conversão deseja fazer?: 1- G para Kg | 2- Kg para G");
                 int c = int.Parse(Console.ReadLine());
 
                 if (c == 1)
                 {
-                    Console.WriteLine(ConversorMassa.GparaKg());
+                    Console.WriteLine(ConversorMassa.GparaKg(x));
                 }
 
                 else if (c == 2)
                 {
-                    Console.WriteLine(ConversorMassa.KgparaG());
+                    Console.WriteLine(ConversorMassa.KgparaG(x));
                 }
 
             }

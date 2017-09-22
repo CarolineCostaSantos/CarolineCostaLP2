@@ -8,35 +8,33 @@ namespace ConversorMedidas
 {
     static class ConversorMassa
     {
-        public static double x;
 
-
-        public static double KgparaG()
+        public static double KgparaG(double x)
         {
             return x * 1000;
         }
 
-        public static double GparaKg()
+        public static double GparaKg(double x)
         {
             return x / 1000;
         }
 
-        public static double KgparaT()
+        public static double KgparaT(double x)
         {
             return x * 0.001;
         }
 
-        public static double TparaKg()
+        public static double TparaKg(double x)
         {
             return x * 1000;
         }
 
-        public static double KgparaLBS()
+        public static double KgparaLBS(double x)
         {
             return x * 2.2046;
         }
 
-        public static double LBSparaKG()
+        public static double LBSparaKG(double x)
         {
             return x * 0.453593;
         }
