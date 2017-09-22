@@ -8,16 +8,16 @@ namespace Empresa
 {   
     class Empregado: Funcionario
     {
-       private  int dEntrada;
+       private string dEntrada;
        public Gerente gerente {get; set;}
 
 
-       public int DEntrada
+       public string DEntrada
        {
            get { return dEntrada; }
        }
 
-        public Empregado(string nome, int Data): base(nome)
+        public Empregado(string nome, string Data): base(nome)
        {
            dEntrada = Data;
        }
