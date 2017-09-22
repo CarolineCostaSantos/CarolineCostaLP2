@@ -105,5 +105,13 @@ namespace ConversorMedidas
         {
             return x * 0.083333;
         }
+        public static double MilhasparaKm()
+        {
+            return x * 1.6;
+        }
+        public static double KmparaMilhas()
+        {
+            return x * 0.62;
+        }
     }
 }
