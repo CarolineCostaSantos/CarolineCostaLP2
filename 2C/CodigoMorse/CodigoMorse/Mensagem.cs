@@ -67,7 +67,7 @@ namespace CodigoMorse
                 }
         }
 
-        public ____ Transmitir()
+        public void Transmitir()
         {
 
             return;
