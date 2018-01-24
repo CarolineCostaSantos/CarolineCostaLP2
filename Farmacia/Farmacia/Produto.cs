@@ -22,6 +22,9 @@ namespace Farmacia
         public string Validade { get; set; }
         public double Preco { get; set; }
 
+        SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
+        SqlCommand cmd = new SqlCommand();
+
 
         public void Cadastro()
         {
@@ -37,13 +40,10 @@ namespace Farmacia
             Console.WriteLine("Preço: ");
             Preco = double.Parse(Console.ReadLine());
 
-            SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
-            SqlCommand cmd = new SqlCommand();
-
             cmd.Connection = conexao;
             cmd.CommandText = @"INSERT
                                 INTO Produto(nome, marca, validade, preco)
-                                Values (@nome, @marca, @validade, @preco);";
+                                VALUES (@nome, @marca, @validade, @preco);";
 
             cmd.Parameters.AddWithValue("nome", nome);
             cmd.Parameters.AddWithValue("marca", marca);
