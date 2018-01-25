@@ -64,15 +64,15 @@ namespace Farmacia
                                 INTO Funcionario(nome, registro, cpf, endereço, telefone, e-mail, cargo, salario, admissão)
                                 VALUES(@nome, @registro, @cpf, @endereço, @telefone, @e-mail, @cargo, @salario, @admissão );";
 
-            cmd.Parameters.AddWithValue("nome", Nome);
-            cmd.Parameters.AddWithValue("registro", nRegistro);
-            cmd.Parameters.AddWithValue("cpf", cpf);
-            cmd.Parameters.AddWithValue("endereço", Endereco);
-            cmd.Parameters.AddWithValue("telefone", Telefone);
-            cmd.Parameters.AddWithValue("e-mail", Email);
-            cmd.Parameters.AddWithValue("cargo", Cargo);
-            cmd.Parameters.AddWithValue("salario", Salario);
-            cmd.Parameters.AddWithValue("admissão", Data);
+            cmd.Parameters.AddWithValue("@nome", Nome);
+            cmd.Parameters.AddWithValue("@registro", nRegistro);
+            cmd.Parameters.AddWithValue("@cpf", cpf);
+            cmd.Parameters.AddWithValue("@endereço", Endereco);
+            cmd.Parameters.AddWithValue("@telefone", Telefone);
+            cmd.Parameters.AddWithValue("@e-mail", Email);
+            cmd.Parameters.AddWithValue("@cargo", Cargo);
+            cmd.Parameters.AddWithValue("@salario", Salario);
+            cmd.Parameters.AddWithValue("@admissão", Data);
 
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();

@@ -15,13 +15,18 @@ namespace Farmacia
 
             if(opcoes == 1)
             {
-                Console.WriteLine(" 1 - Cadastrar\n 2 - ");
+                Console.WriteLine(" 1 - Cadastrar\n 2 - Comprar ");
                 int opcoesP = int.Parse(Console.ReadLine());
+                Produto produto = new Produto();
 
                 if (opcoesP == 1)
                 {
-                    Produto produto = new Produto();
                     produto.Cadastro();
+                }
+
+                else if (opcoesP == 2)
+                {
+                    produto.Compra();
                 }
             }
 
