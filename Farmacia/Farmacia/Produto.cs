@@ -86,7 +86,7 @@ namespace Farmacia
                 cmd.Connection = conexao;
                 cmd.CommandText = string.Format( @"SELECT nome, marca, preco, estoque
                                                    FROM Produto
-                                                   WHERE codigo = '{0}'", codigo);
+                                                   WHERE codigo = {0}", codigo);
                 cmd.Connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -103,14 +103,13 @@ namespace Farmacia
                     }
 
                     cmd.Connection.Close();
-
+       
                     QtdEstoque(Preco, Total, Estoque, codigo);
-
                 }
 
                 else
                 {
-                    Console.WriteLine("Código não encontrado!");
+                    Console.WriteLine("Produto não encontrado!");
                     cmd.Connection.Close();
                 }
 
@@ -146,7 +145,60 @@ namespace Farmacia
                 UpdateEstoque(codigo, estoque);
 
             }
+
+            else
+            {
+                total += preco;
+                Console.WriteLine(" Total: {0}", total);
+
+                estoque -= 1;
+
+                UpdateEstoque(codigo, estoque);
+            }
         }
+
+        public void QtdEstoque(int codg)
+        {
+            cmd.Connection = conexao;
+            cmd.CommandText = string.Format(@"SELECT nome, estoque
+                                              FROM Produto
+                                              WHERE codigo = {0}", codg);
+
+            cmd.Connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if(reader.HasRows)
+            {
+                while(reader.Read())
+                {
+                    nome = reader.GetString(0);
+                    Estoque = reader.GetInt32(1);
+                }
+                cmd.Connection.Close();
+
+                if(Estoque <= 0)
+                {
+                    Console.WriteLine("{0} não possui estoque!", nome);
+                }
+
+                else if(Estoque > 0 && Estoque <= 5)
+                {
+                    Console.WriteLine("{0} possui baixa quantidade em estoque: {1}", nome, Estoque);
+                }
+
+                else
+                {
+                    Console.WriteLine("{0} pussui {1} unidade(s) em estoque!", nome, Estoque);
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Produto não encontrado!");
+                cmd.Connection.Close();
+            }
+        }
+
             public void UpdateEstoque(int cod, int etq)
             {
                 cmd.Connection = conexao;

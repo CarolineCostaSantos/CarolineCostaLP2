@@ -15,7 +15,7 @@ namespace Farmacia
 
             if(opcoes == 1)
             {
-                Console.WriteLine(" 1 - Cadastrar\n 2 - Comprar ");
+                Console.WriteLine(" 1 - Cadastrar\n 2 - Comprar\n 3 - Verificar estoque\n 4 - ");
                 int opcoesP = int.Parse(Console.ReadLine());
                 Produto produto = new Produto();
 
@@ -27,6 +27,14 @@ namespace Farmacia
                 else if (opcoesP == 2)
                 {
                     produto.Compra();
+                }
+
+                else if (opcoesP == 3)
+                {
+                    Console.WriteLine("Código do produto: ");
+                    int codigo = int.Parse(Console.ReadLine());
+
+                    produto.QtdEstoque(codigo);
                 }
             }
 
