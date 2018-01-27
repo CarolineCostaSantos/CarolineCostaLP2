@@ -26,7 +26,7 @@ namespace Farmacia
 
         public string Validade { get; set; }
         public double Preco { get; set; }
-        public int Quantidade { get; set; }
+        public int Estoque { get; set; }
 
         SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
         SqlCommand cmd = new SqlCommand();
@@ -49,20 +49,20 @@ namespace Farmacia
             Console.WriteLine("Preço: ");
             Preco = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Quantidade: ");
-            Quantidade = int.Parse(Console.ReadLine());
+            Console.WriteLine("Quantidade em estoque: ");
+            Estoque = int.Parse(Console.ReadLine());
 
             cmd.Connection = conexao;
             cmd.CommandText = @"INSERT
-                                INTO Produto(codigo, nome, marca, validade, preco, quantidade)
-                                VALUES (@codigo, @nome, @marca, @validade, @preco, @quantidade);";
+                                INTO Produto(codigo, nome, marca, validade, preco, estoque)
+                                VALUES (@codigo, @nome, @marca, @validade, @preco, @estoque);";
 
             cmd.Parameters.AddWithValue("@código", codigo);
             cmd.Parameters.AddWithValue("@nome", nome);
             cmd.Parameters.AddWithValue("@marca", marca);
             cmd.Parameters.AddWithValue("@validade", Validade);
             cmd.Parameters.AddWithValue("@preco", Preco);
-            cmd.Parameters.AddWithValue("@quantidade", Quantidade);
+            cmd.Parameters.AddWithValue("@estoque", Estoque);
 
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
@@ -84,7 +84,7 @@ namespace Farmacia
                 codigo = int.Parse(Console.ReadLine());
 
                 cmd.Connection = conexao;
-                cmd.CommandText = string.Format( @"SELECT nome, marca, preco
+                cmd.CommandText = string.Format( @"SELECT nome, marca, preco, estoque
                                                    FROM Produto
                                                    WHERE codigo = '{0}'", codigo);
                 cmd.Connection.Open();
@@ -97,33 +97,22 @@ namespace Farmacia
                         nome = reader.GetString(0);
                         marca = reader.GetString(1);
                         Preco = reader.GetDouble(2);
+                        Estoque = reader.GetInt32(3);
 
                         Console.WriteLine(" Produto: {0}  Marca: {1}      Preço: {2}", nome, marca, Preco);
                     }
+
+                    cmd.Connection.Close();
+
+                    QtdEstoque(Preco, Total, Estoque, codigo);
+
                 }
 
                 else
                 {
                     Console.WriteLine("Código não encontrado!");
+                    cmd.Connection.Close();
                 }
-
-                cmd.Connection.Close();
-
-                 Total += Preco;
-                Console.WriteLine(" Total: {0}", Total);
-
-                Quantidade -= 1;
-
-                cmd.CommandText = @"UPDATE Produto 
-                                    SET quantidade = @quantidade
-                                    WHERE codigo = @código";
-
-                cmd.Parameters.AddWithValue("@quantidade", Quantidade);
-                cmd.Parameters.AddWithValue("@código", codigo);
-
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
 
                 Console.WriteLine("Aperte ENTER para finalizar a compra");
                 Console.ReadKey();
@@ -131,6 +120,48 @@ namespace Farmacia
 
             while ( finalizar != ConsoleKey.Enter);
         }
+
+
+        public void QtdEstoque(double preco, double total, int estoque, int codigo)
+
+        {
+            if (estoque <= 0)
+            {
+                Console.Beep(698, 800);
+                Console.WriteLine("Produto sem estoque!");
+
+                Console.WriteLine(" Total: {0}", total);
+            }
+
+            else if (estoque <= 5 && estoque > 0)
+            {
+                Console.Beep(698, 400);
+                Console.WriteLine("Baixa quantidade em estoque!");
+
+                total += preco;
+                Console.WriteLine(" Total: {0}", total);
+
+                estoque -= 1;
+
+                UpdateEstoque(codigo, estoque);
+
+            }
+        }
+            public void UpdateEstoque(int cod, int etq)
+            {
+                cmd.Connection = conexao;
+                cmd.CommandText = @"UPDATE Produto 
+                                    SET estoque = @estoque
+                                    WHERE codigo = @código";
+
+                cmd.Parameters.AddWithValue("@estoque", etq);
+                cmd.Parameters.AddWithValue("@código", cod);
+
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+            }
+        
 
     }
 }
