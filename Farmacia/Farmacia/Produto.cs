@@ -27,6 +27,7 @@ namespace Farmacia
         public string Validade { get; set; }
         public double Preco { get; set; }
         public int Estoque { get; set; }
+        public string Referencia { get; set; }
 
         SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
         SqlCommand cmd = new SqlCommand();
@@ -52,10 +53,13 @@ namespace Farmacia
             Console.WriteLine("Quantidade em estoque: ");
             Estoque = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("Referência: ");
+            Referencia = Console.ReadLine();
+
             cmd.Connection = conexao;
             cmd.CommandText = @"INSERT
-                                INTO Produto(codigo, nome, marca, validade, preco, estoque)
-                                VALUES (@codigo, @nome, @marca, @validade, @preco, @estoque);";
+                                INTO Produto(codigo, nome, marca, validade, preco, estoque, referencia)
+                                VALUES (@codigo, @nome, @marca, @validade, @preco, @estoque, @referência);";
 
             cmd.Parameters.AddWithValue("@código", codigo);
             cmd.Parameters.AddWithValue("@nome", nome);
@@ -63,6 +67,7 @@ namespace Farmacia
             cmd.Parameters.AddWithValue("@validade", Validade);
             cmd.Parameters.AddWithValue("@preco", Preco);
             cmd.Parameters.AddWithValue("@estoque", Estoque);
+            cmd.Parameters.AddWithValue("@referência", Referencia);
 
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
@@ -213,6 +218,68 @@ namespace Farmacia
                 cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
             }
+
+        public void Consulta()
+        {
+            Console.WriteLine("Código do produto: ");
+            codigo = int.Parse(Console.ReadLine());
+
+            cmd.Connection = conexao;
+            cmd.CommandText = string.Format(@"SELECT codigo, nome, marca, preco, referencia
+                                              FROM Produto
+                                              WHERE codigo = {0}", codigo);
+
+            cmd.Connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if(reader.HasRows)
+            {
+                while(reader.Read())
+                {
+                    codigo = reader.GetInt32(0);
+                    nome = reader.GetString(1);
+                    marca = reader.GetString(2);
+                    Preco = reader.GetDouble(3);
+                    Referencia = reader.GetString(4);
+
+                    Console.WriteLine("{0}  {1}  {2}   {3}", codigo, nome, marca, Preco);
+                }
+
+                cmd.CommandText = string.Format(@"SELECT codigo, nome, marca, preco, referencia
+                                                  FROM Produto
+                                                  WHERE referencia = {0}", Referencia);
+
+                cmd.Connection.Open();
+                reader = cmd.ExecuteReader();
+
+                if(reader.HasRows)
+                {
+                    Console.WriteLine("OUTROS: ");
+
+                    while(reader.Read())
+                    {
+                        codigo = reader.GetInt32(0);
+                        nome = reader.GetString(1);
+                        marca = reader.GetString(2);
+                        Preco = reader.GetDouble(3);
+                        Referencia = reader.GetString(4);
+
+                        Console.WriteLine(" {0}  {1}  {2}   {3}", codigo, nome, marca, Preco);
+                    }
+                    cmd.Connection.Close();
+                }
+
+                else
+                {
+                    Console.WriteLine("Não foram encontrados outros produtos parecidos!");
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Produto não encontrado!");
+            }
+        }
         
 
     }
