@@ -58,7 +58,7 @@ namespace Farmacia
 
             else if (opcoes == 3)
             {
-                Console.WriteLine(" 1 - Cadastrar cliente\n 2 - Cliente já cadastrado");
+                Console.WriteLine(" 1 - Cadastrar cliente\n 2 - Cliente já cadastrado\n 3 - Deletar cadastros");
                 int opcoesC = int.Parse(Console.ReadLine());
                 Cliente cliente = new Cliente();
 
@@ -85,6 +85,11 @@ namespace Farmacia
                     produto.Compra();
                     cliente.UpdateData(telefone);
 
+                }
+
+                else if(opcoesC == 3)
+                {
+                    cliente.DeleteCliente();
                 }
             }
 

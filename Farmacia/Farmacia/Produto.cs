@@ -106,8 +106,6 @@ namespace Farmacia
 
                         Console.WriteLine(" Produto: {0}  Marca: {1}      Preço: {2}", nome, marca, Preco);
                     }
-
-                    cmd.Connection.Close();
        
                     QtdEstoque(Preco, Total, Estoque, codigo);
                 }
@@ -115,8 +113,9 @@ namespace Farmacia
                 else
                 {
                     Console.WriteLine("Produto não encontrado!");
-                    cmd.Connection.Close();
                 }
+
+                cmd.Connection.Close();
 
                 Console.WriteLine("Aperte ENTER para finalizar a compra");
                 Console.ReadKey();
@@ -179,7 +178,6 @@ namespace Farmacia
                     nome = reader.GetString(0);
                     Estoque = reader.GetInt32(1);
                 }
-                cmd.Connection.Close();
 
                 if(Estoque <= 0)
                 {
@@ -200,8 +198,9 @@ namespace Farmacia
             else
             {
                 Console.WriteLine("Produto não encontrado!");
-                cmd.Connection.Close();
             }
+
+            cmd.Connection.Close();
         }
 
             public void UpdateEstoque(int cod, int etq)
@@ -249,7 +248,6 @@ namespace Farmacia
                                                   FROM Produto
                                                   WHERE referencia = {0}", Referencia);
 
-                cmd.Connection.Open();
                 reader = cmd.ExecuteReader();
 
                 if(reader.HasRows)
@@ -266,7 +264,6 @@ namespace Farmacia
 
                         Console.WriteLine(" {0}  {1}  {2}   {3}", codigo, nome, marca, Preco);
                     }
-                    cmd.Connection.Close();
                 }
 
                 else
@@ -279,6 +276,8 @@ namespace Farmacia
             {
                 Console.WriteLine("Produto não encontrado!");
             }
+
+            cmd.Connection.Close();
         }
         
 

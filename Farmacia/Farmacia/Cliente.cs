@@ -111,15 +111,16 @@ namespace Farmacia
 
                     Console.WriteLine("Cliente já cadastrado!\n Nome: {0}\n Endereço: {1}\n Telefone: {2}", Nome, endereco, telefone);
                 }
-
-                cmd.Connection.Close();
             }
 
             else
             {
                 Console.WriteLine("Cliente não encontrado");
+
                 Cadastro();
             }
+
+            cmd.Connection.Close();
         }
 
         public void DeleteCliente()
@@ -133,14 +134,42 @@ namespace Farmacia
 
             if(reader.HasRows)
             {
+                int i = 0, e = 0;
+
                 while(reader.Read())
                 {
                     string DataUltimoP = reader.GetString(0);
                     Telefone = reader.GetString(1);
 
+                    TimeSpan diferencaDias = Convert.ToDateTime(Data) - Convert.ToDateTime(DataUltimoP);
+                    int totaldias = diferencaDias.Days;
 
+                    if (totaldias > 1825)
+                    {
+                        cmd.CommandText = string.Format(@"DELETE 
+                                                          FROM Cliente 
+                                                          WHERE telefone = {0}", Telefone);
+
+                        cmd.ExecuteNonQuery();
+
+                        i++;
+                    }
+
+                    else
+                    {
+                        e++;
+                    }
                 }
+
+                Console.WriteLine(" Há {0} clientes cadastrados em seu banco!\n {0} Cadastros foram deletados.", e, i);
             }
+
+            else
+            {
+                Console.WriteLine(" Não há cllientes cadastrados!");
+            }
+
+            cmd.Connection.Close();
         }
 
     }
