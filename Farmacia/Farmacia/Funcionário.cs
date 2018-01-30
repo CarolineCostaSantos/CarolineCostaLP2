@@ -27,7 +27,7 @@ namespace Farmacia
         public string Data { get; set; }
         public string Cargo { get; set; }
 
-        SqlConnection conexão = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog = Farmacia;Integrated Security = SSPI;");
+        SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
         SqlCommand cmd = new SqlCommand();
 
         public void Cadastro()
@@ -59,7 +59,7 @@ namespace Farmacia
             Console.WriteLine("Data de admissão: ");
             Data = Console.ReadLine();
 
-            cmd.Connection = conexão;
+            cmd.Connection = conexao;
             cmd.CommandText = @"INSERT
                                 INTO Funcionario(nome, registro, cpf, endereço, telefone, e-mail, cargo, salario, admissão)
                                 VALUES(@nome, @registro, @cpf, @endereço, @telefone, @e-mail, @cargo, @salario, @admissão );";
