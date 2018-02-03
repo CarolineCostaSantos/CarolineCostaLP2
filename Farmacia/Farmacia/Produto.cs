@@ -25,11 +25,12 @@ namespace Farmacia
         }
 
         public string Validade { get; set; }
-        public double Preco { get; set; }
+
+        public double preco { get; set; }
         public int Estoque { get; set; }
         public string Referencia { get; set; }
 
-        SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
+        SqlConnection conexao = new SqlConnection("Data Source=EN2LIC_014;Initial Catalog=Farmacia;Integrated Security=SSPI;");
         SqlCommand cmd = new SqlCommand();
 
 
@@ -48,7 +49,7 @@ namespace Farmacia
             Validade = Console.ReadLine();
 
             Console.WriteLine("Preço: ");
-            Preco = double.Parse(Console.ReadLine());
+            preco = double.Parse(Console.ReadLine());
 
             Console.WriteLine("Quantidade em estoque: ");
             Estoque = int.Parse(Console.ReadLine());
@@ -59,15 +60,15 @@ namespace Farmacia
             cmd.Connection = conexao;
             cmd.CommandText = @"INSERT
                                 INTO Produto(codigo, nome, marca, validade, preco, estoque, referencia)
-                                VALUES (@codigo, @nome, @marca, @validade, @preco, @estoque, @referência);";
+                                VALUES (@codigo, @nome, @marca, @validade, @preco, @estoque, @referencia);";
 
-            cmd.Parameters.AddWithValue("@código", codigo);
+            cmd.Parameters.AddWithValue("@codigo", codigo);
             cmd.Parameters.AddWithValue("@nome", nome);
             cmd.Parameters.AddWithValue("@marca", marca);
             cmd.Parameters.AddWithValue("@validade", Validade);
-            cmd.Parameters.AddWithValue("@preco", Preco);
+            cmd.Parameters.AddWithValue("@preco", preco);
             cmd.Parameters.AddWithValue("@estoque", Estoque);
-            cmd.Parameters.AddWithValue("@referência", Referencia);
+            cmd.Parameters.AddWithValue("@referencia", Referencia);
 
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
@@ -78,7 +79,7 @@ namespace Farmacia
         }
 
 
-        public double Total { get; set; } = 0;
+        public double Total = 0;
         ConsoleKey finalizar = ConsoleKey.K;
 
         public void Compra()
@@ -101,13 +102,13 @@ namespace Farmacia
                     {
                         nome = reader.GetString(0);
                         marca = reader.GetString(1);
-                        Preco = reader.GetDouble(2);
+                        preco = reader.GetDouble(2);
                         Estoque = reader.GetInt32(3);
 
-                        Console.WriteLine(" Produto: {0}  Marca: {1}      Preço: {2}", nome, marca, Preco);
+                        Console.WriteLine(" Produto: {0}  Marca: {1}      Preço: {2}", nome, marca, preco);
                     }
        
-                    QtdEstoque(Preco, Total, Estoque, codigo);
+                    QtdEstoque(preco, Total, Estoque, codigo);
                 }
 
                 else
@@ -208,10 +209,10 @@ namespace Farmacia
                 cmd.Connection = conexao;
                 cmd.CommandText = @"UPDATE Produto 
                                     SET estoque = @estoque
-                                    WHERE codigo = @código";
+                                    WHERE codigo = @codigo";
 
                 cmd.Parameters.AddWithValue("@estoque", etq);
-                cmd.Parameters.AddWithValue("@código", cod);
+                cmd.Parameters.AddWithValue("@codigo", cod);
 
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
@@ -238,10 +239,10 @@ namespace Farmacia
                     codigo = reader.GetInt32(0);
                     nome = reader.GetString(1);
                     marca = reader.GetString(2);
-                    Preco = reader.GetDouble(3);
+                    preco = reader.GetDouble(3);
                     Referencia = reader.GetString(4);
 
-                    Console.WriteLine("{0}  {1}  {2}   {3}", codigo, nome, marca, Preco);
+                    Console.WriteLine("{0}  {1}  {2}   {3}", codigo, nome, marca, preco);
                 }
 
                 cmd.CommandText = string.Format(@"SELECT codigo, nome, marca, preco, referencia
@@ -259,10 +260,10 @@ namespace Farmacia
                         codigo = reader.GetInt32(0);
                         nome = reader.GetString(1);
                         marca = reader.GetString(2);
-                        Preco = reader.GetDouble(3);
+                        preco = reader.GetDouble(3);
                         Referencia = reader.GetString(4);
 
-                        Console.WriteLine(" {0}  {1}  {2}   {3}", codigo, nome, marca, Preco);
+                        Console.WriteLine(" {0}  {1}  {2}   {3}", codigo, nome, marca, preco);
                     }
                 }
 

@@ -26,10 +26,10 @@ namespace Farmacia
             get { return string.Format("{0}, {1} - {2}\n Complemento:{3}\n CEP: {4}", Rua, Numero, Bairro, Complemento, Cep); }
         }
 
-        public string Telefone { get; set; }
-        public DateTime Data { get; set; } = DateTime.Now;
+        public int Telefone { get; set; }
+        public DateTime Data = DateTime.Now;
 
-        SqlConnection conexao = new SqlConnection("Data Source=(localdb)lptrab;Initial Catalog=Farmacia;Integrated Security=SSPI;");
+        SqlConnection conexao = new SqlConnection("Data Source=EN2LIC_014;Initial Catalog=Farmacia;Integrated Security=SSPI;");
         SqlCommand cmd = new SqlCommand();
 
         public void Cadastro()
@@ -38,7 +38,7 @@ namespace Farmacia
             Nome = Console.ReadLine();
 
             Console.WriteLine(" Telefone: ");
-            Telefone = Console.ReadLine();
+            Telefone = int.Parse(Console.ReadLine());
 
             Console.WriteLine(" Endereço:\n Rua ");
             Rua = Console.ReadLine();
@@ -139,7 +139,7 @@ namespace Farmacia
                 while(reader.Read())
                 {
                     string DataUltimoP = reader.GetString(0);
-                    Telefone = reader.GetString(1);
+                    Telefone = reader.GetInt32(1);
 
                     TimeSpan diferencaDias = Convert.ToDateTime(Data) - Convert.ToDateTime(DataUltimoP);
                     int totaldias = diferencaDias.Days;
